@@ -1,5 +1,6 @@
 package com.project.survey.Controller;
 
+import com.github.fge.jsonpatch.JsonPatch;
 import com.project.survey.Model.Survey;
 import com.project.survey.Services.SurveyServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,8 @@ public class SurveyController {
 
         return ResponseEntity.ok("Deleted successfully");
     }
-
+    @PatchMapping ("/{id}")
+    public ResponseEntity<Survey> updateSurvey (@PathVariable long id, @RequestBody JsonPatch patch){
+        return ResponseEntity.ok(surveyServices.patchOne(id,patch));
+    }
 }

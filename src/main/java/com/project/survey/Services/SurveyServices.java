@@ -1,5 +1,10 @@
 package com.project.survey.Services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import com.project.survey.Model.Survey;
 import com.project.survey.Repositories.SurveyRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +36,24 @@ public class SurveyServices {
 
         sRepository.deleteById(id);
     }
+
+    public Survey patchOne(long id, JsonPatch patch) {
+        Survey survey = findById(id).orElseThrow();
+        Survey patchedSurvey = patchSurvey(survey,patch);
+        return sRepository.save(patchedSurvey);
+    }
+    private Survey patchSurvey(Survey survey, JsonPatch patch) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode surveyJson = objectMapper.convertValue(survey, JsonNode.class);
+        try {
+            JsonNode patched = patch.apply(surveyJson);
+            survey = objectMapper.treeToValue(patched,Survey.class);
+            return survey;
+        } catch (JsonPatchException | JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }
