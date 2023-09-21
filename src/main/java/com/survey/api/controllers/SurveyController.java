@@ -1,8 +1,8 @@
-package com.project.survey.Controller;
+package com.survey.api.controllers;
 
 import com.github.fge.jsonpatch.JsonPatch;
-import com.project.survey.Model.Survey;
-import com.project.survey.Services.SurveyServices;
+import com.survey.api.Model.Survey;
+import com.survey.api.services.SurveyServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

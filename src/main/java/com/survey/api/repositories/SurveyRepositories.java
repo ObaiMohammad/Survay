@@ -1,7 +1,6 @@
-package com.project.survey.Repositories;
+package com.survey.api.repositories;
 
-import com.project.survey.Model.Question;
-import com.project.survey.Model.Survey;
+import com.survey.api.Model.Survey;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 

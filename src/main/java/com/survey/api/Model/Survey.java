@@ -1,4 +1,4 @@
-package com.project.survey.Model;
+package com.survey.api.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

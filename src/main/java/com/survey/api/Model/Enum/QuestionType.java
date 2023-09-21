@@ -1,4 +1,4 @@
-package com.project.survey.Model.Enum;
+package com.survey.api.Model.Enum;
 
 public enum QuestionType {
         SINGLE_CHOICE,

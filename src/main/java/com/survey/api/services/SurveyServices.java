@@ -1,12 +1,12 @@
-package com.project.survey.Services;
+package com.survey.api.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
-import com.project.survey.Model.Survey;
-import com.project.survey.Repositories.SurveyRepositories;
+import com.survey.api.Model.Survey;
+import com.survey.api.repositories.SurveyRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
