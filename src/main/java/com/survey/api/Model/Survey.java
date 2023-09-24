@@ -18,6 +18,8 @@ public class Survey {
 
     @Id
     private Long id;
+    private String title;
+    private String description;
     private List<Question> questions;
 
 }
