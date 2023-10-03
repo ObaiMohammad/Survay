@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
+
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -22,8 +24,12 @@ public class User {
     private String id;
     private String firstName;
     private String lastName;
-    private String userName;
+
+    @Indexed(unique = true)
+    private String username;
     private String password;
+
+    @Indexed(unique = true)
     private String email;
     private LocalDate birthday;
     private List<Survey> userSurveys;

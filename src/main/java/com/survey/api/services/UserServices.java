@@ -33,4 +33,11 @@ public class UserServices {
         return userRepository.findAll();
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
 }

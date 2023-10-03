@@ -33,4 +33,22 @@ public class UserController {
 
         return  userServices.findAll();
     }
+
+    @GetMapping("/{username}")
+    public boolean validateUsername (@PathVariable String username){
+
+        User user = userServices.findByUsername(username);
+        if (user == null){
+            return true;
+        }
+        return false;
+
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllCourses(){
+        userServices.deleteAllUsers();
+        return ResponseEntity.ok("Deleted successfully");
+    }
+
 }
