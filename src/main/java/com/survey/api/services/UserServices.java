@@ -33,8 +33,20 @@ public class UserServices {
         return userRepository.findAll();
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public boolean isUsernameAlreadyExists(String username) {
+       User user =  userRepository.findByUsername(username);
+         if (user == null){
+             return false;
+         }
+         return true;
+
+    }    public boolean isEmailAlreadyExists(String email) {
+       User user =  userRepository.findByEmail(email);
+         if (user == null){
+             return false;
+         }
+         return true;
+
     }
 
     public void deleteAllUsers() {

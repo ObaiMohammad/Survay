@@ -1,9 +1,9 @@
 package com.survey.api.controllers;
 
-import com.survey.api.Model.Survey;
 import com.survey.api.Model.User;
 import com.survey.api.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,15 +34,12 @@ public class UserController {
         return  userServices.findAll();
     }
 
-    @GetMapping("/{username}")
-    public boolean validateUsername (@PathVariable String username){
+    @GetMapping("/validate/username/{username}")
+    public boolean isValidUsername (@PathVariable String username){
 
-        User user = userServices.findByUsername(username);
-        if (user == null){
-            return true;
-        }
-        return false;
-
+        boolean usernameExists = userServices.isUsernameAlreadyExists(username);
+        // if username exists than the username is not valid
+       return (!usernameExists);
     }
 
     @DeleteMapping
@@ -50,5 +47,18 @@ public class UserController {
         userServices.deleteAllUsers();
         return ResponseEntity.ok("Deleted successfully");
     }
+
+    @GetMapping("/validate/email/{email}")
+    public ResponseEntity<?> isValidEmail (@PathVariable String email){
+
+        boolean emailExists = userServices.isEmailAlreadyExists(email);
+        // if email exists than the email is not valid
+         if(emailExists){
+             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists.");
+         }
+        return ResponseEntity.ok("Email is available.");
+
+    }
+
 
 }
